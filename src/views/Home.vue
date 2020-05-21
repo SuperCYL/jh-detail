@@ -124,10 +124,8 @@ export default {
   },
   methods: {
     init(){
-      debugger;
       var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
       if (ua.match(/MicroMessenger/i) == "micromessenger") {
-        debugger;
         //在微信中打开
         this.isTit = false;
       }else{
