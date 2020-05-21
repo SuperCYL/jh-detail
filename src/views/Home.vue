@@ -7,7 +7,7 @@
        <span class="iconfont icon-fanhui"></span>
        <span class="title-name">{{title}}</span>
        <span class="iconfont icon-fenxiang" @click="shareClick"></span>
-       <svg class="icon icon-huaban1" aria-hidden="true" v-show="shareShow">>
+       <svg class="icon icon-huaban1" aria-hidden="true" v-show="shareShow" @click="shareLink">
           <use xlink:href="#icon-huaban1"></use>
        </svg>
     </div>
@@ -18,16 +18,16 @@
     <div class="group-cont">
       <div class="padding-cont">
         <img src="../assets/group.png" />
-        <span class="group-price">￥<em>2.00</em></span>
+        <span class="group-price">￥<em>{{price}}</em></span>
         <span class="group-juan">抢8折团购券</span>
         <div class="group-person">
-            <p class="group-num">5人</p>
+            <p class="group-num">{{person}}人</p>
             <p class="group-num">成团</p>
         </div>
       </div>
 
       <ul class="item clearfix">
-        <li class="line-li">
+        <li class="line-li" @click="gotopage(1)">
           <div class="icon-div">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fenzu"></use>
@@ -35,7 +35,7 @@
           </div>
           <div class="text">团购首页</div>
         </li>
-        <li class="line-li">
+        <li class="line-li" @click="gotopage(2)">
           <div class="icon-div">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fenzu1"></use>
@@ -43,7 +43,7 @@
           </div>
           <div class="text">店铺</div>
         </li>
-        <li>
+        <li @click="gotopage(3)">
           <div class="icon-div"> 
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fenzu2"></use>
@@ -61,7 +61,7 @@
           <svg class="icon icon-youhui" aria-hidden="true">
               <use xlink:href="#icon-youhui"></use>
             </svg>优惠详情</div>
-        <p class="text">二元抢当季时蔬八折团购券。包含新鲜散养草鸭蛋三斤；粽子三斤，肉粽五个，红豆花生棕五个；新土豆，六斤；带壳蚕豆，现采，五斤。原价168元，团购价135元。下单请到公众号微店购买，购买请联系卖家出示本团购券。为保障新鲜，仅限江苏上海地区，快递费约25-30元，发顺丰。下单后2-3天发货。</p>
+        <p class="text">{{discouuntDetail}}</p>
       </div>
       <div class="cont-item">
         <div class="tit"> <svg class="icon icon-quan" aria-hidden="true">
@@ -78,7 +78,7 @@
         <div class="tit"> <svg class="icon icon-youhui" aria-hidden="true">
               <use xlink:href="#icon-shangpin"></use>
             </svg>商品介绍</div>
-        <p class="text">由于蔬菜成熟期很短，时间仅限于5月，请在此期间下单。鸭子为池塘散养，非笼养，产量有限，每年端午前后为丰产期，可通过摄像头观看。蚕豆现场采摘，发货前均通过视频直播，敬请观看，你吃的我也吃。下单请到公众号微店购买，购买时请联系卖家出示本优惠券。</p>
+        <p class="text">{{goodIntroduce}}</p>
       </div>
 
       <div class="cont-item">
@@ -94,8 +94,8 @@
     <p class="ba twoba">沪ICP备18044506号-3</p>
     <p style="height:50px;"></p>
     <div class="footer clearfix">
-        <div class="f-l">￥2.00新建团购  5月21号 23点截止</div>
-        <div class="f-r"><span class="iconfont icon-weixin"></span>微信购买</div>
+        <div class="f-l">{{time}}</div>
+        <div class="f-r" @click="pay"><span class="iconfont icon-weixin"></span>微信购买</div>
     </div>
   </div>
 </template>
@@ -108,19 +108,44 @@ export default {
   name: "Home",
   data() {
     return {
-      title:"鸭蛋/粽子时蔬套餐八折券欢迎大家前来品尝",
-      shareShow:false
+      title:"鸭蛋/粽子时蔬套餐八折券欢迎大家前来品尝", //标题
+      shareShow:false,
+      price:2.00, //价格
+      person:5, //几人团购
+      discouuntDetail:"二元抢当季时蔬八折团购券。包含新鲜散养草鸭蛋三斤；粽子三斤，肉粽五个，红豆花生棕五个；新土豆，六斤；带壳蚕豆，现采，五斤。原价168元，团购价135元。下单请到公众号微店购买，购买请联系卖家出示本团购券。为保障新鲜，仅限江苏上海地区，快递费约25-30元，发顺丰。下单后2-3天发货。", //优惠详情
+      goodIntroduce:"由于蔬菜成熟期很短，时间仅限于5月，请在此期间下单。鸭子为池塘散养，非笼养，产量有限，每年端午前后为丰产期，可通过摄像头观看。蚕豆现场采摘，发货前均通过视频直播，敬请观看，你吃的我也吃。下单请到公众号微店购买，购买时请联系卖家出示本优惠券。" //商品介绍
+      time:"￥2.00新建团购  5月21号 23点截止"
     }
   },
   components: {
     // HelloWorld
   },
   mounted() {
-    
+    //初始化方法
+    this.init();
   },
   methods: {
+    init(){
+
+    },
     shareClick(){
       this.shareShow = true;
+    },
+    //点击分享
+    shareLink(){
+
+    },
+    gotopage(type){
+      if(type==1){
+        //跳至回购首页
+      }else if(type==2){
+        //跳至店铺
+      }else{
+        //跳至视频与直播
+      }
+    },
+    pay(){
+      //支付
     }
   },
 };
