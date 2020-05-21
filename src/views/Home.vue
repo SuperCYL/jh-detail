@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-  <!--
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />-->
-    <div class="title">
+    <div class="title" v-show="isTit">
        <span class="iconfont icon-fanhui"></span>
        <span class="title-name">{{title}}</span>
        <span class="iconfont icon-fenxiang" @click="shareClick"></span>
@@ -114,7 +111,8 @@ export default {
       person:5, //几人团购
       discouuntDetail:"二元抢当季时蔬八折团购券。包含新鲜散养草鸭蛋三斤；粽子三斤，肉粽五个，红豆花生棕五个；新土豆，六斤；带壳蚕豆，现采，五斤。原价168元，团购价135元。下单请到公众号微店购买，购买请联系卖家出示本团购券。为保障新鲜，仅限江苏上海地区，快递费约25-30元，发顺丰。下单后2-3天发货。", //优惠详情
       goodIntroduce:"由于蔬菜成熟期很短，时间仅限于5月，请在此期间下单。鸭子为池塘散养，非笼养，产量有限，每年端午前后为丰产期，可通过摄像头观看。蚕豆现场采摘，发货前均通过视频直播，敬请观看，你吃的我也吃。下单请到公众号微店购买，购买时请联系卖家出示本优惠券。", //商品介绍
-      time:"￥2.00新建团购  5月21号 23点截止"
+      time:"￥2.00新建团购  5月21号 23点截止",
+      isTit:true
     }
   },
   components: {
@@ -126,7 +124,15 @@ export default {
   },
   methods: {
     init(){
-
+      debugger;
+      var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        debugger;
+        //在微信中打开
+        this.isTit = false;
+      }else{
+        this.isTit = true;
+      }
     },
     shareClick(){
       this.shareShow = true;
