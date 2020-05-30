@@ -7,6 +7,9 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    meta: { //对应每个页面要显示的标题
+      title: "鸭蛋/粽子时蔬套餐八折券欢迎大家前来品"
+    },
     name: "Home",
     component: Home
   },
