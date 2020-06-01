@@ -8,9 +8,8 @@
     </div>-->
     <div class="img-cont">
       <img src="../assets/new.png" />
-      <svg class="icon icon-huaban1" aria-hidden="true">
-        <use xlink:href="#icon-huaban1"></use>
-      </svg>
+      <img class="icon-huaban1" src="../assets/share.png" />
+      
     </div>
     <div class="group-cont">
       <div class="padding-cont">
@@ -189,10 +188,10 @@ export default {
       .icon-huaban1{
         position: absolute;
         right: 10px;
-        top: -10px;
+        top: 0px;
         font-size: 20px;
-        width: 3.5em;
-        height: 3.5em;
+        width: 76px;
+        height: 49px;
         z-index:9999;
       }
     }
@@ -226,6 +225,7 @@ export default {
           margin-top: -10px;
           left: 50%;
           margin-left: -45px;
+          
         }
         .group-person{
           position: absolute;
