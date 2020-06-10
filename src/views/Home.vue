@@ -57,7 +57,12 @@
           <svg class="icon icon-youhui" aria-hidden="true">
               <use xlink:href="#icon-youhui"></use>
             </svg>优惠详情</div>
-        <p class="text">{{discouuntDetail}}</p>
+        <p class="text" v-show="discouuntDetailShow">{{discouuntDetail}}</p>
+        <div style="text-align:center;color:#9B9B9B;font-size:18px;cursor:pointer;">
+            <span @click="discouuntDetailClick(1)" v-show="discouuntDetailShow" class="iconfont icon-shuangjiantoushang"></span>
+            <span @click="discouuntDetailClick(2)" v-show="!discouuntDetailShow" class="iconfont icon-shuangjiantouxia"></span>
+        </div>
+
       </div>
       <div class="cont-item">
         <div class="tit"> <svg class="icon icon-quan" aria-hidden="true">
@@ -66,28 +71,48 @@
             <svg class="icon icon-jiaobiao" aria-hidden="true">
               <use xlink:href="#icon-jiaobiao"></use>
             </svg>
-       </div>
-        <p class="text">团购结果是由公众号发出消息，请务必保持关注公众号，请识别下面二维码关注公众号</p>
-        <img class="code-img" src="../assets/code.png">
-        <p class="text">团购流程:</p>
-        <p class="text">1.关注公众号->付款->领取弹出卡券->分享页面->公众号通知团购结果.</p>
-        <p class="text">2.付款->勾选关注公众号->领取弹出卡券->分享页面->公众号通知团购结果.</p>
+        </div>
+
+        <div v-show="attentionShow">
+          <p class="text">团购结果是由公众号发出消息，请务必保持关注公众号，请识别下面二维码关注公众号</p>
+          <img class="code-img" src="../assets/code.png">
+          <p class="text">团购流程:</p>
+          <p class="text">1.关注公众号->付款->领取弹出卡券->分享页面->公众号通知团购结果.</p>
+          <p class="text">2.付款->勾选关注公众号->领取弹出卡券->分享页面->公众号通知团购结果.</p>
+        </div>
+        <div style="text-align:center;color:#9B9B9B;font-size:18px;cursor:pointer;">
+            <span @click="attentionShowClick(1)" v-show="attentionShow" class="iconfont icon-shuangjiantoushang"></span>
+            <span @click="attentionShowClick(2)" v-show="!attentionShow" class="iconfont icon-shuangjiantouxia"></span>
+        </div>
+       
       </div>
 
       <div class="cont-item">
         <div class="tit"> <svg class="icon icon-youhui" aria-hidden="true">
               <use xlink:href="#icon-shangpin"></use>
             </svg>商品介绍</div>
-        <p class="text">{{goodIntroduce}}</p>
+        <p class="text" v-show="goodIntroduceShow">{{goodIntroduce}}</p>
+         <div style="text-align:center;color:#9B9B9B;font-size:18px;cursor:pointer;">
+            <span @click="goodIntroduceClick(1)" v-show="goodIntroduceShow" class="iconfont icon-shuangjiantoushang"></span>
+            <span @click="goodIntroduceClick(2)" v-show="!goodIntroduceShow" class="iconfont icon-shuangjiantouxia"></span>
+        </div>
       </div>
 
       <div class="cont-item">
         <div class="tit"><svg class="icon icon-youhui" aria-hidden="true">
               <use xlink:href="#icon-tuangou"></use>
             </svg>团购说明</div>
-        <p class="text">若团购失败会自动退款，团购成功会通过公众号通知。团购成功后须在有效日期内使用，请注意有效期时间。本券位于微信->我->卡包，团购成功后可自用也可赠与亲友使用。</p>
-        <p class="text">购买时请出示本券，团购券默认不可与其他优惠重叠使用，除非另有说明，每次限用一张券，本店拥有券使用方法解释权.</p>
-        <p class="text">若出现异常可联系技术服务：15221146964 请保留支付信息以及消息通知，谢谢您的配合。</p>
+
+        <div v-show="groupBuyShow">
+            <p class="text">若团购失败会自动退款，团购成功会通过公众号通知。团购成功后须在有效日期内使用，请注意有效期时间。本券位于微信->我->卡包，团购成功后可自用也可赠与亲友使用。</p>
+            <p class="text">购买时请出示本券，团购券默认不可与其他优惠重叠使用，除非另有说明，每次限用一张券，本店拥有券使用方法解释权.</p>
+            <p class="text">若出现异常可联系技术服务：15221146964 请保留支付信息以及消息通知，谢谢您的配合。</p>
+        </div>
+        <div style="text-align:center;color:#9B9B9B;font-size:18px;cursor:pointer;">
+            <span @click="groupBuyClick(1)" v-show="groupBuyShow" class="iconfont icon-shuangjiantoushang"></span>
+            <span @click="groupBuyClick(2)" v-show="!groupBuyShow" class="iconfont icon-shuangjiantouxia"></span>
+        </div>
+
       </div>
     </div>
     <p class="ba">上海此在网络科技</p>
@@ -109,11 +134,15 @@ export default {
   data() {
     return {
       // title:"鸭蛋/粽子时蔬套餐八折券欢迎大家前来品尝", //标题
-      price:2.00, //价格
+      price:"2.00", //价格
       person:5, //几人团购
       discouuntDetail:"二元抢当季时蔬八折团购券。包含新鲜散养草鸭蛋三斤；粽子三斤，肉粽五个，红豆花生棕五个；新土豆，六斤；带壳蚕豆，现采，五斤。原价168元，团购价135元。下单请到公众号微店购买，购买请联系卖家出示本团购券。为保障新鲜，仅限江苏上海地区，快递费约25-30元，发顺丰。下单后2-3天发货。", //优惠详情
       goodIntroduce:"由于蔬菜成熟期很短，时间仅限于5月，请在此期间下单。鸭子为池塘散养，非笼养，产量有限，每年端午前后为丰产期，可通过摄像头观看。蚕豆现场采摘，发货前均通过视频直播，敬请观看，你吃的我也吃。下单请到公众号微店购买，购买时请联系卖家出示本优惠券。", //商品介绍
-      time:"￥2.00新建团购  5月21号 23点截止"
+      time:"￥2.00新建团购  5月21号 23点截止",
+      discouuntDetailShow:false,
+      attentionShow:false,
+      goodIntroduceShow:false,
+      groupBuyShow:false
     }
   },
   components: {
@@ -138,6 +167,34 @@ export default {
     },
     pay(){
       //支付
+    },
+    discouuntDetailClick(type){
+      if(type == 1){
+        this.discouuntDetailShow = false;
+      }else{
+        this.discouuntDetailShow = true;
+      }
+    },
+    attentionShowClick(type){
+      if(type == 1){
+        this.attentionShow = false;
+      }else{
+        this.attentionShow = true;
+      }
+    },
+    goodIntroduceClick(type){
+      if(type == 1){
+        this.goodIntroduceShow = false;
+      }else{
+        this.goodIntroduceShow = true;
+      }
+    },
+    groupBuyClick(type){
+      if(type == 1){
+        this.groupBuyShow = false;
+      }else{
+        this.groupBuyShow = true;
+      }
     }
   },
 };
@@ -387,6 +444,17 @@ export default {
   @media screen and (min-width: 361px) {
     .home .group-cont .padding-cont .group-person{
       right: 47px;
+    }
+  }
+  @media only screen and (max-device-width: 320px){
+    .group-price{
+      margin-top: -16px!important;
+    }
+    .group-price em{
+      font-size:24px!important;
+    }
+    .home .footer .f-l{
+      font-size:12px!important;
     }
   }
 </style>
