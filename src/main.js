@@ -1,10 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-
-import Mint from 'mint-ui';
-Vue.use(Mint);
-
 import store from "./store";
 
 import './assets/fonts/iconfont.css'

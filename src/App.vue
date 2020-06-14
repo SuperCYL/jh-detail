@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>-->
-    <router-view/>
+    <router-view v-wechat-title="$route.meta.title" />
   </div>
 </template>
 
@@ -20,14 +20,4 @@ html,body,div,p,ul,img,span,em{
   fill: currentColor;
   overflow: hidden;
 }
- .clearfix:after {
-    display: block;
-    visibility: hidden;
-    content: ".";
-    height: 0;
-    clear: both;
-  }
-  .clearfix {
-    *zoom: 1;  /*此处是为ie6、7处理的方式 */
-  }
 </style>
